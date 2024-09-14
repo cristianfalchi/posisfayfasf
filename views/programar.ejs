@@ -1,0 +1,75 @@
+<%- include('partials/head', {title: "FA & FA Posis 2.0 Santa Fe"}) %>
+
+<body>
+    <div class="container">
+        <!-- menu de navegacion -->
+        <%- include('partials/navbar') %>
+
+        <!-- animacion de uploading -->
+        <%- include('partials/uploading') %>
+        
+             <!-- animacion de update data -->
+             <%- include('partials/update') %>
+
+        <div class="container__info">
+            <div class = "title">
+                <h1>Programar Hora de envío</h1>
+                <hr/>
+                <form class="form-cronjob"  action="/data/programar"  method="POST" name="formulario">
+                    <div class="inputs-checkbox">
+                        <label>Elija una hora <br>
+                            <input id="hora" type="time" name="Hora" step="1" value="<%= locals.data?.Hora %>"   >
+                        </label>
+                        
+                        <div class="check-days">
+                            <div>
+                                <label >Lunes </label>
+                                <input type="checkbox" name="Lunes" <%= (locals.data?.Lunes == 'on') ? 'checked' : '' %>  >
+                            </div>
+                            <div>
+                                <label >Martes </label>
+                                <input type="checkbox" name="Martes" <%= (locals.data?.Martes == 'on') ? 'checked' : '' %> >
+                            </div>
+                            <div>
+                                <label >Miércoles </label>
+                                <input type="checkbox" name="Miercoles" <%= (locals.data?.Miercoles == 'on') ? 'checked' : '' %> >
+                            </div>
+                            <div>
+                                <label >Jueves </label>
+                                <input type="checkbox" name="Jueves" <%= (locals.data?.Jueves == 'on') ? 'checked' : '' %> >
+                            </div>
+                            <div>
+                                <label >Viernes </label>
+                                <input type="checkbox" name="Viernes" <%= (locals.data?.Viernes == 'on') ? 'checked' : '' %> >
+                            </div>
+                            <div>
+                                <label >Sábado </label>
+                                <input type="checkbox" name="Sabado" <%= (locals.data?.Sabado == 'on') ? 'checked' : '' %> >
+                            </div>
+                            <div>
+                                <label >Domingo </label>
+                                <input type="checkbox" name="Domingo" <%= (locals.data?.Domingo == 'on') ? 'checked' : '' %> >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-form">
+                        <input onclick="handleUpdateData()" class="btn-secuencia" type="submit" value="Aceptar" >
+                        <input onclick="desprogramar(event)" class="btn-secuencia" type="submit" value="Desprogramar"  >
+                    </div>
+                </form>
+                <div class="msg-hora <%= (locals.hiden) && 'hiden'  %> ">
+                    <!-- mensajes de informacion -->
+                    <%- include('partials/message') %>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript" src="/script/script.js"></script>
+
+</body>
+</html>
+
+
+
+

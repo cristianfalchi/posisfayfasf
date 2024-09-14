@@ -1,0 +1,53 @@
+<%- include('partials/head', {title: "FA & FA Posis 2.0 Santa Fe"}) %>
+
+<body>
+    <div class="container">
+        <!-- menu de navegacion -->
+        <%- include('partials/navbar') %>
+
+        <!-- animacion de uploading -->
+        <%- include('partials/uploading') %>
+        
+             <!-- animacion de update data -->
+             <%- include('partials/update') %>
+
+        <form class="form-cronjob"  action="/data/rehabilitar-secuencia"  method="POST" name="formulario">
+            <div class = "title">
+                <h1>Rehabilitar secuencia</h1>
+                <hr/>
+                <div class="div-secuencia">
+                    <label>Ingrese N° de secuencia</label>
+                    <input 
+                        id="miInput"
+                        type="number" 
+                        class="input-secuencia"
+                        onkeypress="enterPress(event)"
+                        name="nroSecIngresado"
+                        value = <%= locals.nroSecIngresado %>
+                    >
+                    <input onclick="handleUpdateData()" class="btn-secuencia" type="submit" value="Rehabilitar" >
+                  </div>
+                  <% if (locals.noExisteSec) { %>
+                    <p  class="mensaje-secuencia animate__animated animate__bounceInRight">La secuencia Nro: <%= locals.nroSecIngresado %> no existe!.</p>
+                    <% } %>
+                  <% if(locals.secHabilitada){ %>
+                    <p style="color: blue" class="mensaje-secuencia animate__animated animate__bounceInRight">La secuencia Nro: <%= locals.nroSecIngresado %> se habilitó exitosamente!.</p>
+                  <% } %>
+                  <% if (locals.existeSecHabilitada) { %>
+                    <p class="mensaje-secuencia animate__animated animate__bounceInRight">Ya existe una secuencia pendiente de enviar!</p>
+                  <% } %>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript" src="/script/script.js"></script>
+    <script>
+        window.onload = function() {
+          document.getElementById("miInput").focus();
+        };
+      </script>
+</body>
+</html>
+
+
+
+

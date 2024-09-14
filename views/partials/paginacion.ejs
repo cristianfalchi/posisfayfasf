@@ -1,0 +1,31 @@
+<div class="title__paginacion">
+  <% if(cantPaginas > 1 ){ %>              
+  <!-- <h1><%= title %></h1> -->
+
+  <div class="div-paginacion">
+      <ul>
+        <li>
+          <a href="/data/<%= title %>?page=<%=1%>"><<</a>
+      </li>
+        <li> <% if(page !=1 ){ %>
+          <a  
+          href="/data/<%= title %>?page=<%= page - 1 %>"
+              >Anterior</a> <% } %>
+      </li>
+        <li ><% if(cantPaginas !== page  ){ %>
+          <a href="/data/<%= title %>?page=<%= page + 1 %>"
+              >Siguiente</a>   <% } %>
+      </li>
+        <li>
+          <a
+          onclick="ultimapagina()"
+          href="/data/<%= title %>?page=<%=cantPaginas%>">>></a>
+      </li>
+      </ul>
+    </div> 
+    <div > 
+        pagina 
+        <span ><%= page %>  de  </span> 
+        <span ><%= cantPaginas%></span> 
+    </div> <% } %>
+</div>
